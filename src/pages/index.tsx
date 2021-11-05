@@ -23,7 +23,6 @@ const Posts = ({ data }: AllPostsPageProps) => {
       {<h1>This is where the posts live!!</h1>}
       <ul>
         {data.blogPosts.nodes.map((post) => {
-          console.log(post.slug);
           return (
             // <BlogPost
             // key={post.title}
@@ -31,7 +30,9 @@ const Posts = ({ data }: AllPostsPageProps) => {
             //   slug={post.slug}
             //   content={post.content}
             // />
-            <h1>yo</h1>
+            <div key={post.title}>
+              <h1>{post.title}</h1>
+            </div>
           );
         })}
       </ul>
