@@ -16,10 +16,11 @@ interface PostPageProps {
   };
 }
 
-const BlogPost = ({ data }: PostPageProps, slug: string) => {
+const BlogPost = ({ data }: PostPageProps) => {
 
   return (
     <div>
+      <h1>hello</h1>
       <h1>{data.datoCmsBlogPost.title}</h1>
     </div>
   );
@@ -28,12 +29,10 @@ const BlogPost = ({ data }: PostPageProps, slug: string) => {
 
 
 export const query = graphql`
-  query blogPostQuery {
+  query  {
     datoCmsBlogPost {
-      id
       title
-      string
-      content
+      slug
     }
   }
 `;

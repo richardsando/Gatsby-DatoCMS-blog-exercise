@@ -1,9 +1,9 @@
-import { graphql, Link } from "gatsby";
-import React from "react";
+import { graphql, Link } from 'gatsby';
+import React, { useState } from 'react';
 
 interface AllPostsPageProps {
   data: {
-    allDatoCmsBlogPost: {
+    blogPosts: {
       nodes: [
         {
           id: string;
@@ -17,18 +17,18 @@ interface AllPostsPageProps {
 }
 
 const Posts = ({ data }: AllPostsPageProps) => {
-  const posts = data.allDatoCmsBlogPost.nodes;
+  console.log(data);
   return (
     <div>
       {<h1>This is where the posts live!!</h1>}
       <ul>
-        {posts.map(({ id, title, content, slug }) => {
-          console.log(title);
+        {data.blogPosts.nodes.map((post) => {
+          console.log(post.slug);
           return (
-            <li key={id}>
-              <Link to ={`/posts/${slug}`} state={slug} >
-                <h2>{title}</h2>
-                <p>{content}</p>
+            <li key={post.id}>
+              <Link to={`${post.slug}`}>
+                <h2>{post.title}</h2>
+                <p>{post.content}</p>
               </Link>
             </li>
           );
@@ -39,12 +39,13 @@ const Posts = ({ data }: AllPostsPageProps) => {
 };
 
 export const query = graphql`
-  query allBlogPostQuery {
-    allDatoCmsBlogPost {
+  {
+    blogPosts: allDatoCmsBlogPost {
       nodes {
         id
         title
         content
+        # nameSlug: gatsbyPath(filePath: "/posts/{datoCmsBlogPost.slug}")
         slug
       }
     }
