@@ -48,7 +48,7 @@ export const query = graphql`
         id
         title
         content
-        nameSlug: gatsbyPath(filePath: "/posts/{datoCmsBlogPost.slug}")
+        nameSlug: gatsbyPath(filePath: "/{datoCmsBlogPost.slug}")
         slug
       }
     }
