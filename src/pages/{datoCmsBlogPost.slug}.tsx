@@ -1,5 +1,5 @@
-import React from "react";
-import { graphql } from "gatsby";
+import React from 'react';
+import { graphql } from 'gatsby';
 
 interface PostPageProps {
   data: {
@@ -16,7 +16,9 @@ interface PostPageProps {
   };
 }
 
-const BlogPost = ({ data }: PostPageProps) => {
+const BlogPost = (props: any, { data }: PostPageProps) => {
+  console.log(props)
+  console.log(data);
 
   return (
     <div>
@@ -26,13 +28,12 @@ const BlogPost = ({ data }: PostPageProps) => {
   );
 };
 
-
-
 export const query = graphql`
-  query  {
-    datoCmsBlogPost {
+  query ($id: String!) {
+    datoCmsBlogPost(id: { eq: $id }) {
       title
       slug
+      content
     }
   }
 `;

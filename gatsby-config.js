@@ -10,6 +10,7 @@ module.exports = {
         apiToken: "722643209b132c3a043b88d5bee49f",
       },
     },
+    `gatsby-plugin-gatsby-cloud`,
     "gatsby-plugin-sass",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
