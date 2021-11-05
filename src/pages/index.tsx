@@ -11,18 +11,16 @@ interface AllPostsPageProps {
           title: string;
           content: string;
           slug: string;
-          gatsbyPath: string
-          
-         
+          blogPath: string;
         }
       ];
     };
-  
   };
 }
 
-const Posts = ({ data }: AllPostsPageProps) => {
-  console.log(data);
+const Posts = (params: AllPostsPageProps) => {
+  console.log(params);
+  const { data } = params;
   return (
     <div>
       {<h1>This is where the posts live!!</h1>}
@@ -30,7 +28,7 @@ const Posts = ({ data }: AllPostsPageProps) => {
         {data.blogPosts.nodes.map((post) => {
           return (
             <div key={post.title}>
-              <Link to={post.slug}>
+              <Link to={post.blogPath}>
                 <h1>{post.title}</h1>
               </Link>
             </div>
@@ -48,7 +46,7 @@ export const query = graphql`
         id
         title
         content
-        nameSlug: gatsbyPath(filePath: "/{datoCmsBlogPost.slug}")
+        blogPath: gatsbyPath(filePath: "/{datoCmsBlogPost.slug}")
         slug
       }
     }

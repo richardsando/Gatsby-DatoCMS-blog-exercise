@@ -16,10 +16,10 @@ interface PostPageProps {
   };
 }
 
-const BlogPost = (props: any, { data }: PostPageProps) => {
-  console.log(props)
-  console.log(data);
-
+const BlogPost = ( params : any) => {
+  console.log(params);
+  const { data } = params;
+  console.log(data)  
   return (
     <div>
       <h1>hello</h1>
@@ -29,11 +29,12 @@ const BlogPost = (props: any, { data }: PostPageProps) => {
 };
 
 export const query = graphql`
-  query ($id: String!) {
-    datoCmsBlogPost(id: { eq: $id }) {
+  query($id: String) {
+    datoCmsBlogPost(id: {eq: $id}) {
       title
       slug
       content
+     
     }
   }
 `;
