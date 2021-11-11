@@ -1,56 +1,31 @@
-import { graphql, Link } from 'gatsby';
-import React from 'react';
-// import BlogPost from '../components/BlogPost';
+import axios from 'axios';
+import { Link } from 'gatsby';
+import React, { useState, useEffect } from 'react';
+import Nav from '../components/Nav/Nav';
 
-interface AllPostsPageProps {
-  data: {
-    blogPosts: {
-      nodes: [
-        {
-          id: string;
-          title: string;
-          content: string;
-          slug: string;
-          blogPath: string;
-        }
-      ];
+
+const Articles = () => {
+  const [data, setData] = useState<any>(null);
+
+
+  useEffect(() => {
+    const queryServer = async () => {
+      const response = await axios.get('http://localhost:3001/articles');
+
+      setData(response.data);
     };
-  };
-}
 
-const Posts = (params: AllPostsPageProps) => {
-  console.log(params);
-  const { data } = params;
+    queryServer();
+  }, []);
+
   return (
     <div>
-      {<h1>This is where the posts live!!</h1>}
-      <ul>
-        {data.blogPosts.nodes.map((post) => {
-          return (
-            <div key={post.title}>
-              <Link to={post.blogPath}>
-                <h1>{post.title}</h1>
-              </Link>
-            </div>
-          );
-        })}
-      </ul>
+		 <Nav />
+    <h1>Museums Vicotria Database</h1>
+
+      
     </div>
   );
 };
 
-export const query = graphql`
-  {
-    blogPosts: allDatoCmsBlogPost {
-      nodes {
-        id
-        title
-        content
-        blogPath: gatsbyPath(filePath: "/{datoCmsBlogPost.slug}")
-        slug
-      }
-    }
-  }
-`;
-
-export default Posts;
+export default Articles;

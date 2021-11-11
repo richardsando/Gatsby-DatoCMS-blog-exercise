@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 interface AboutPageProps {
   data: {
     datoCmsAboutUsPage: {
-      aboutme: string;
+      aboutme: string;  
       aboutMe: string;
     
     };
@@ -12,10 +12,10 @@ interface AboutPageProps {
 }
 
 const About = ({ data }: AboutPageProps) => (
-  <article className="sheet">
-    <h1>{data.datoCmsAboutUsPage.aboutMe}</h1>
-    <p>{data.datoCmsAboutUsPage.aboutme}</p>
-  </article>
+	<article className="sheet">
+		<h1>{data.datoCmsAboutUsPage.aboutMe}</h1>
+		<p>{data.datoCmsAboutUsPage.aboutme}</p>
+	</article>
 );
 export const query = graphql`
   query posQuery {
