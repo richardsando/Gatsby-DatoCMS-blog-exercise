@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from '../../components/Nav/Nav';
 import { createMarkup } from '../../helper/createMarkup';
 
-const Items = () => {
+const Specimens = () => {
   const [data, setData] = useState<any>(null);
   console.log(data);
 
@@ -19,7 +19,7 @@ const Items = () => {
   return (
     <div>
       <Nav />
-      <h1>Museums Victoria Species</h1>
+      <h1>Museums Victoria Specimens</h1>
 
       {data ? (
         <ul>
@@ -45,4 +45,4 @@ const Items = () => {
   );
 };
 
-export default Items;
+export default Specimens;

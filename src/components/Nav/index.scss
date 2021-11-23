@@ -1,15 +1,14 @@
 .nav-wrapper {
     display: flex;
-    position: fixed;
     width: 100%;
     flex-direction: column;
-    margin-top: -100px;
 }
 
 .nav-list {
     display: flex;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0px;
 }
 .nav-item * {
     font-weight: 2rem;

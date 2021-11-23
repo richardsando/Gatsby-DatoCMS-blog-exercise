@@ -3,6 +3,19 @@
     text-decoration: none;
     list-style-type: none;
 }
+a {
+    color: rgb(63, 63, 63);;
+}
+
 body {
-    margin-top: 100px;
+    padding: 0px;
+    width: 960px;
+    margin: auto;
+    min-height: 100vh;
+    height: 100%;
+    background-color: rgb(245, 237, 237);
+}
+
+ul {
+    padding: 0px;
 }
