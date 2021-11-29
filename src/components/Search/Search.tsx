@@ -1,15 +1,22 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 const Search = () => {
-  const [query, setQuery] = useState("");
-  const [type, setType] = useState(["species","item","specimen","article"]);
+  const [query, setQuery] = useState('');
+  const [type, setType] = useState([
+    { species: true },
+    { items: true },
+    { specimen: true },
+    { article: true },
+  ]);
   const [results, setResults] = useState<any>(null);
+  const [typeUi, setTypeUi] = useState<boolean>(false);
   console.log(results);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const result = await axios.get("http://localhost:3001/search", {
+
+    const result = await axios.get('http://localhost:3001/search', {
       params: { query: query, recordtype: type },
     });
 
@@ -17,11 +24,19 @@ const Search = () => {
 
     const uniqueResults = [
       ...new Map(
-        array.map((item: any) => [item["displayTitle"], item])
+        array.map((item: any) => [item['displayTitle'], item])
       ).values(),
     ];
     console.log(uniqueResults);
     setResults(uniqueResults);
+  };
+
+  const handleChange = (e: React.MouseEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    console.log(target.checked);
+    type.forEach(() => {});
+
+    // e.target.checked = !e.target.checked
   };
 
   const filterUniqueResults = (
@@ -30,6 +45,17 @@ const Search = () => {
     self: [object]
   ) => {
     return self.indexOf(value) === index;
+  };
+
+  const changeTypeUi = () => {
+    typeUi ? setTypeUi(!typeUi) 
+    // if (typeUi === false) {
+    //   setTypeUi(true);
+    // } else {
+    //   if (typeUi === true) {
+    //     setTypeUi(false);
+    //   }
+    // }
   };
 
   return (
@@ -51,29 +77,62 @@ const Search = () => {
           id="search params"
         />
         <br />
-        <br />
-        <label htmlFor="">Type</label>
-        <br />
-        <label htmlFor="article-checkbox">Article</label>
-        <input
-          type="checkbox"
-          id="article-checkbox"
-          onChange={(e) => setType(e.target.value)}
-        />
-        <label htmlFor="item-checkbox">Item</label>
-        <input type="checkbox" id="item-checkbox" />
-        <label htmlFor="species-checkbox">Species</label>
-        <input type="checkbox" id="species-checkbox" />
-        <label htmlFor="specimen-checkbox">Specimen</label>
-        <input type="checkbox" id="specimen-checkbox" />
-        {/* <select name="type" id="type" onChange={(e) => setType(e.target.value)}>
-          <option value="any">Any</option>
-          <option value="article">Article</option>
-          <option value="species">Species</option>
-          <option value="item">Item</option>
-        </select> */}
-        <br />
-        <br />
+        <div style={{ display: 'flex', width: '300px', alignItems: 'center' }}>
+          <label htmlFor="type-checkbox">
+            <h4>Filter By Type</h4>
+          </label>
+          <input
+            type="checkbox"
+            id="type-checkbox"
+            name="type"
+            onClick={() => changeTypeUi()}
+          />
+        </div>
+        {typeUi && (
+          <div>
+            <hr />
+            <input
+              type="checkbox"
+              id="article-checkbox"
+              name="article"
+              value="article"
+              onClick={(e) => handleChange(e)}
+              defaultChecked
+            />
+            <label htmlFor="article-checkbox">Article</label>
+            <br />
+            <input
+              type="checkbox"
+              id="item-checkbox"
+              name="item"
+              value="item"
+              onClick={(e) => handleChange(e)}
+              defaultChecked={true}
+            />
+            <label htmlFor="item-checkbox">Item</label>
+            <br />
+            <input
+              type="checkbox"
+              id="species-checkbox"
+              name="species"
+              value="species"
+              onClick={(e) => handleChange(e)}
+              defaultChecked={true}
+            />
+            <label htmlFor="species-checkbox">Species</label>
+            <br />
+            <input
+              type="checkbox"
+              id="specimen-checkbox"
+              name="specimens"
+              value="specimens"
+              onClick={(e) => handleChange(e)}
+              defaultChecked={true}
+            />
+            <label htmlFor="specimen-checkbox">Specimen</label>
+            <hr />
+          </div>
+        )}
         <input type="submit" value="Submit" />
       </form>
 
@@ -93,7 +152,7 @@ const Search = () => {
                   <img
                     src={object.media[0].small.uri}
                     alt={object.media[0].caption}
-                    style={{ width: "200px" }}
+                    style={{ width: '200px' }}
                   />
                 )}
               </li>

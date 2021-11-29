@@ -1,16 +1,14 @@
-import axios from "axios";
-import { Link } from "gatsby";
-import React, { useState, useEffect } from "react";
-import Nav from "../components/Nav/Nav";
-import Footer from "../components/Footer/Footer";
-import Search from "../components/Search/Search";
+import axios from 'axios';
+import { Link } from 'gatsby';
+import React, { useState, useEffect } from 'react';
+import Search from '../components/Search/Search';
 
 const Articles = () => {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
     const queryServer = async () => {
-      const response = await axios.get("http://localhost:3001/articles");
+      const response = await axios.get('http://localhost:3001/articles');
 
       setData(response.data);
     };
@@ -20,7 +18,6 @@ const Articles = () => {
 
   return (
     <div>
-      <Nav />
       <h1>Museums Victoria Database</h1>
       <h2>Search Database</h2>
       <Search />
@@ -59,7 +56,6 @@ const Articles = () => {
           </p>
         </li>
       </ul>
-      <Footer />
     </div>
   );
 };

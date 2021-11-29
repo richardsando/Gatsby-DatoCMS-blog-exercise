@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Link } from 'gatsby';
 import React, { useState, useEffect } from 'react';
-import Nav from '../../components/Nav/Nav';
 import { createMarkup } from '../../helper/createMarkup';
 
 const Items = () => {
@@ -18,7 +17,6 @@ const Items = () => {
 
   return (
     <div>
-      <Nav />
       <h1>Museums Victoria Species</h1>
 
       {data ? (

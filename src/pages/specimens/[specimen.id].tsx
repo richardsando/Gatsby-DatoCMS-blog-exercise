@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Link } from "gatsby";
 import React, { useState, useEffect } from "react";
-import Nav from "../../components/Nav/Nav";
 import { createMarkup } from "../../helper/createMarkup";
 
 const Specimen = ({ location }: any) => {
@@ -23,7 +22,6 @@ const Specimen = ({ location }: any) => {
 
   return (
     <div>
-      <Nav />
       <Link to="/specimens">Back to Specimens</Link>
       {data ? (
         <div>

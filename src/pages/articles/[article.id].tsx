@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Link } from 'gatsby';
 import React, { useState, useEffect } from 'react';
-import Nav from '../../components/Nav/Nav';
+
 import '../index.scss';
 import { createMarkup } from '../../helper/createMarkup';
 
@@ -25,7 +25,6 @@ const Article = ({ location }: any) => {
 
   return (
     <div>
-      <Nav />
       {data ? (
         <div>
           <h1>{data.title}</h1>

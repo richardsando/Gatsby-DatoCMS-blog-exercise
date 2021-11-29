@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Link } from 'gatsby';
 import React, { useState, useEffect } from 'react';
-import Nav from '../../components/Nav/Nav';
+
 
 const Items = () => {
   const [data, setData] = useState<any>(null);
@@ -17,7 +17,6 @@ const Items = () => {
 
   return (
     <div>
-      <Nav />
       <h1>Museums Victoria Items</h1>
 
       {data ? (

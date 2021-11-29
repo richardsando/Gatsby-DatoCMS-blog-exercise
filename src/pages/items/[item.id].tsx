@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Link } from 'gatsby';
 import React, { useState, useEffect } from 'react';
-import Nav from '../../components/Nav/Nav';
 import '../index.scss';
 
 const Item = ({ location }: any) => {
@@ -28,7 +27,6 @@ const Item = ({ location }: any) => {
 
   return (
     <div>
-         <Nav />
       <Link to="/items">Back to Items</Link>
       {data ? (
         <div>
